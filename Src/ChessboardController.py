@@ -1,5 +1,9 @@
+import cv2
+import numpy as np
+import CameraModule
+
 class ChessboardController:
-    def __init__(self, stockfish_path, camera_id=0, hardware_port="/dev/ttyUSB0"):
+    def __init__(self, stockfish_path, camera_id, hardware_port):
         self.camera = CameraModule(camera_id)
         self.vision = VisionModule()
         self.chess_logic = ChessLogicModule(stockfish_path)
