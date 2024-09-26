@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 
 class CameraModule:
     def __init__(self, camera_id=0):
