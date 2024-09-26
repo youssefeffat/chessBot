@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-class VisionModule:
+class ComputerVisionModule:
     def __init__(self):
         self.initial_board_state = None
 
@@ -19,6 +19,7 @@ class VisionModule:
         gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         # Further processing and feature detection goes here
         # ...
+        processed_board_state = None
         return processed_board_state
 
     def compare_board_states(self, initial_state, current_state):

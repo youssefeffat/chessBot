@@ -1,11 +1,9 @@
-import cv2
-import numpy as np
 import CameraModule
-
+from Src import ComputerVisionModule, ChessLogicModule, MoveProcessor, HardwareCommModule, CameraModule
 class ChessboardController:
     def __init__(self, stockfish_path, camera_id, hardware_port):
         self.camera = CameraModule(camera_id)
-        self.vision = VisionModule()
+        self.computerVision = ComputerVisionModule()
         self.chess_logic = ChessLogicModule(stockfish_path)
         self.move_processor = MoveProcessor()
         self.hardware_comm = HardwareCommModule(hardware_port)
@@ -13,12 +11,12 @@ class ChessboardController:
     def start_game(self):
         # Step 1: Initialize board and capture the initial state
         initial_image = self.camera.capture_image()
-        self.vision.calibrate_board(initial_image)
+        self.computerVision.calibrate_board(initial_image)
         
         while not self.chess_logic.board.is_game_over():
             # Step 2: Capture the player's move
             current_image = self.camera.capture_image()
-            player_move = self.vision.detect_move(current_image)
+            player_move = self.computerVision.detect_move(current_image)
 
             if player_move:
                 print(f"Player move detected: {player_move}")

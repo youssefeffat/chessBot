@@ -7,6 +7,11 @@ class ChessLogicModule:
         self.engine = chess.engine.SimpleEngine.popen_uci(stockfish_path)
     
     def apply_player_move(self, player_move):
+
+        """
+        Push player move into the board 
+        player move type :, ex:"e2e4"
+        """
         try:
             self.board.push_uci(player_move)
         except ValueError:

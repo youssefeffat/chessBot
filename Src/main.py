@@ -1,8 +1,15 @@
+from ChessboardController import ChessboardController
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
 class main:
-    def __init__(self, stockfish_path, camera_id=0, hardware_port="/dev/ttyUSB0"):
-        self.stockfish_path = stockfish_path
-        self.camera_id = camera_id
-        self.hardware_port = hardware_port
+    def __init__(self):
+        self.stockfish_path = os.getenv("STOCKFISH_PATH")
+        self.camera_id = int(os.getenv("CAMERA_ID"))
+        self.hardware_port = os.getenv("HARDWARE_PORT")
         self.controller = None
 
     def initialize(self):
@@ -32,14 +39,9 @@ class main:
             self.controller.shutdown()
 
 if __name__ == "__main__":
-    # Define paths and configurations
-    stockfish_path = "/path/to/stockfish"  # Update with actual Stockfish path
-    camera_id = 0  # Default camera (change if needed)
-    hardware_port = "/dev/ttyUSB0"  # Port for hardware communication
 
     # Create the main game object
-    game = main(stockfish_path, camera_id, hardware_port)
-    
+    game = main()
     # Initialize and run the game
     game.initialize()
     game.run()
