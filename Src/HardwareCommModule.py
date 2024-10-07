@@ -9,7 +9,7 @@ class HardwareCommModule:
             move_data = transform_data(move_data)
         self.serial_connection.write(move_data.encode())
     
-    # TODO: Implement the transform_data method
+    # TODO: Implement the transform_ data method
     def transform_data(self, data):
         """
         Transform data to a format that can be sent to the hardware

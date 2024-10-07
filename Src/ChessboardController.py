@@ -28,7 +28,21 @@ class ChessboardController:
                 
                 # Step 4: Process and send the bot's move to the hardware
                 move_dict = self.move_processor.process_move(bot_move)
-                self.hardware_comm.send_move(move_dict)
+                robotResponse = self.hardware_comm.send_move(move_dict)
+
+                # Step 5: Check the robot response
+                if robotResponse:
+                    # Step 6: Check the bot's move
+                    bot_move_image = self.camera.capture_image()
+                    if self.computerVision.check_move(bot_move_image, self.chess_logic.board):
+                        print("Move executed by the robot successfully.")
+                    else :
+                        print("Robot move execution failed.")
+                        raise Exception("Robot move execution failed.")
+                else:
+                    print("Communication error between software and robot.")
+                    raise Exception("Communication error between software and robot.")
+
 
     def shutdown(self):
         # Cleanup resources
