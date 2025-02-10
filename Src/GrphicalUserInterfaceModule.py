@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+# import tkinter as tk
 from matplotlib.patches import Rectangle
 
 def fen_to_board(fen):
@@ -53,6 +54,8 @@ def display_chessboard(ax,board):
 
 
 fig,ax=plt.subplots(figsize=(8,8))
+# root = tk.Tk()
+# canvas = tk.FigureCanvasTkAgg(fig, root)
 running = True
 fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
@@ -62,7 +65,7 @@ display_chessboard(ax,chess_board)
 plt.ion()
 plt.show()
 while running: 
-    user_input = input("Enter Fen: ") #Exemple 
+    user_input = input("Enter Fen: ") #Exemple: rnbqkbnr/ppp1pppp/8/3p4/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
     if user_input.lower() == 'quit':
         running = False
 

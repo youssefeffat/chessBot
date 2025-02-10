@@ -10,6 +10,7 @@ class ChessLogicModule:
     def __init__(self, stockfish_path):
         self.board = chess.Board()
         self.engine = chess.engine.SimpleEngine.popen_uci(stockfish_path)
+        chess.Board
     
     def apply_player_move(self, player_move):
 
@@ -32,6 +33,7 @@ class ChessLogicModule:
     def close_engine(self):
         self.engine.quit()
 
+
 stockfish_path = os.getenv("STOCKFISH_PATH")
 print("stockfish path : ", stockfish_path)
 chess = ChessLogicModule(stockfish_path)
@@ -41,5 +43,6 @@ print(botMove)
 chess.apply_player_move("e4e5")
 botMove = chess.get_bot_move()
 print(botMove)
+chess.board()
 chess.close_engine()
 
